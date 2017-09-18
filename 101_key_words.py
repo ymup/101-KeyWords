@@ -48,9 +48,8 @@ if __name__ == '__main__':
     file_names = glob.glob('data/*.csv')
     word_list = []
     for name in file_names:
-        print name
         datafile = open(name)
         word_list.extend(make_word_list(make_tweet_list(datafile)))
     result = count_words(word_list)
     for i in range(101):
-        print i, result[i][0][0], result[i][0][1], result[i][1]
+        print '{0:03d}'.format(i), result[i][0][0], result[i][0][1], result[i][1]
