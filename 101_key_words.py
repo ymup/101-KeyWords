@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import glob, csv, MeCab
 
+PYTHONIOENCODING='utf-8'
+
 def make_tweet_list(file):
     reader = csv.reader(file)
     tweet_list = []
@@ -28,8 +30,7 @@ def make_word_list(tweet_list):
             if (not '@' in node.surface and
                 not feature[-3] == '*' and
                 not any(ignore in feature for ignore in ignore_list)):
-                word_list.append((feature[-3].decode('utf-8'),
-                                  feature[0].decode('utf-8')))
+                word_list.append((feature[-3], feature[0]))
             node = node.next
     return word_list
 
@@ -51,5 +52,5 @@ if __name__ == '__main__':
         datafile = open(name)
         word_list.extend(make_word_list(make_tweet_list(datafile)))
     result = count_words(word_list)
-    for i in range(101):
-        print '{0:03d}'.format(i), result[i][0][0], result[i][0][1], result[i][1]
+    for i in range(150):
+        print '%03d %s' % (i, result[i][0][0])
