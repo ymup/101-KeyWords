@@ -18,6 +18,8 @@ def make_word_list(tweet_list):
                    '助動詞',
                    '接頭',
                    '接尾',
+                   '接頭詞',
+                   '接尾詞',
                    '特殊',
                    '非自立']
     word_list = []
@@ -30,7 +32,7 @@ def make_word_list(tweet_list):
             if (not '@' in node.surface and
                 not feature[-3] == '*' and
                 not any(ignore in feature for ignore in ignore_list)):
-                word_list.append((feature[-3], feature[0]))
+                word_list.append((feature[-3], feature))
             node = node.next
     return word_list
 
@@ -53,4 +55,4 @@ if __name__ == '__main__':
         word_list.extend(make_word_list(make_tweet_list(datafile)))
     result = count_words(word_list)
     for i in range(101):
-        print '%03d %s' % (i, result[i][0][0])
+        print '%03d %s %s' % (i, result[i][0][0], result[i][0][1][0])
