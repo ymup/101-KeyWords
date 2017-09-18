@@ -52,5 +52,5 @@ if __name__ == '__main__':
         datafile = open(name)
         word_list.extend(make_word_list(make_tweet_list(datafile)))
     result = count_words(word_list)
-    for i in range(150):
+    for i in range(101):
         print '%03d %s' % (i, result[i][0][0])
